@@ -40,3 +40,76 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+## Programe
+
+import random
+
+class MedicinePrescribingAgent:
+    def __init__(self):
+        self.location = "A"
+        self.temperature = {
+            "A": random.randint(97, 103),
+            "B": random.randint(97, 103)
+        }
+        self.performance = 0
+
+    def move_left(self):
+        if self.location == "B":
+            self.location = "A"
+
+    def move_right(self):
+        if self.location == "A":
+            self.location = "B"
+
+    def check_temperature(self):
+        temp = self.temperature[self.location]
+        print(f"Room {self.location} Temperature: {temp} F")
+
+        if temp > 98.5:
+            self.prescribe_medicine()
+        else:
+            print("Patient is healthy.")
+
+    def prescribe_medicine(self):
+        print(f"Medicine prescribed in Room {self.location}")
+        self.performance += 10
+        self.temperature[self.location] = 98.0
+
+    def perform_action(self, action):
+        if action == "left":
+            self.performance -= 1
+            self.move_left()
+        elif action == "right":
+            self.performance -= 1
+            self.move_right()
+        elif action == "check":
+            self.check_temperature()
+        else:
+            print("Invalid action")
+
+    def print_status(self):
+        print("Current Location:", self.location)
+        print("Performance Measure:", self.performance)
+        print("Patient Temperatures:", self.temperature)
+        print("-" * 40)
+
+
+agent = MedicinePrescribingAgent()
+
+agent.perform_action("check")
+agent.print_status()
+
+agent.perform_action("right")
+agent.perform_action("check")
+agent.print_status()
+
+agent.perform_action("left")
+agent.perform_action("check")
+agent.print_status()
+
+## Output
+<img width="932" height="383" alt="image" src="https://github.com/user-attachments/assets/033c17a4-72fc-4477-b613-c0f7bba63f2e" />
+
+## Result
+Thus, the Medicine Prescribing AI Agent was successfully developed using the PEAS description to identify patients with fever, prescribe medicine, and calculate the performance measure based on treatment and movement.
