@@ -42,7 +42,7 @@
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
 
 ## Programe
-
+```
 import random
 
 class MedicinePrescribingAgent:
@@ -107,7 +107,7 @@ agent.print_status()
 agent.perform_action("left")
 agent.perform_action("check")
 agent.print_status()
-
+```
 ## Output
 <img width="932" height="383" alt="image" src="https://github.com/user-attachments/assets/033c17a4-72fc-4477-b613-c0f7bba63f2e" />
 
